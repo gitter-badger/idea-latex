@@ -22,51 +22,39 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.latex.codeStyle;
+package mobi.hsz.idea.latex.formatter;
 
-import com.intellij.application.options.CodeStyleAbstractConfigurable;
-import com.intellij.application.options.CodeStyleAbstractPanel;
-import com.intellij.openapi.options.Configurable;
+import com.intellij.formatting.*;
+import com.intellij.lang.ASTNode;
+import com.intellij.openapi.util.TextRange;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
-import com.intellij.psi.codeStyle.CodeStyleSettingsProvider;
 import mobi.hsz.idea.latex.lang.LatexLanguage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * LaTeX {@link CodeStyleSettingsProvider} implementation.
+ * LaTeX {@link FormattingModelBuilder} implementation.
  *
  * @author Jakub Chrzanowski <jakub@hsz.mobi>
  * @since 0.3
  */
-public class LatexCodeStyleSettingsProvider extends CodeStyleSettingsProvider {
+public class LatexFormattingModelBuilder implements FormattingModelBuilder {
 
     @NotNull
     @Override
-    public Configurable createSettingsPage(CodeStyleSettings settings, CodeStyleSettings originalSettings) {
-        return new CodeStyleAbstractConfigurable(settings, originalSettings, LatexLanguage.NAME) {
-            @Override
-            protected CodeStyleAbstractPanel createPanel(CodeStyleSettings settings) {
-                return new LatexCodeStyleMainPanel(getCurrentSettings(), settings);
-            }
+    public FormattingModel createModel(PsiElement element, CodeStyleSettings settings) {
+        PsiFile containingFile = element.getContainingFile().getViewProvider().getPsi(LatexLanguage.INSTANCE);
+        LatexBlock block = new LatexBlock(element.getNode(), Wrap.createWrap(WrapType.NONE, false), Alignment.createAlignment());
 
-            @Override
-            public String getHelpTopic() {
-                return "reference.settingsdialog.codestyle." + LatexLanguage.NAME.toLowerCase();
-            }
-        };
+        return FormattingModelProvider.createFormattingModelForPsiFile(containingFile, block, settings);
     }
 
     @Nullable
     @Override
-    public String getConfigurableDisplayName() {
-        return LatexLanguage.NAME;
+    public TextRange getRangeAffectingIndent(PsiFile file, int offset, ASTNode elementAtOffset) {
+        return null;
     }
-
-//    @Nullable
-//    @Override
-//    public CustomCodeStyleSettings createCustomSettings(CodeStyleSettings settings) {
-//        return new LatexCodeStyleSettings(settings);
-//    }
 
 }

@@ -73,9 +73,6 @@
                 file="colorSchemes/LatexDarcula.xml"
                 scheme="Darcula"/>
 
-        <codeStyleSettingsProvider
-                implementation="mobi.hsz.idea.latex.codeStyle.LatexCodeStyleSettingsProvider"/>
-
         <colorSettingsPage
                 implementation="mobi.hsz.idea.latex.highlighter.LatexColorSettingsPage"/>
 
@@ -93,6 +90,9 @@
         <lang.foldingBuilder
                 implementationClass="mobi.hsz.idea.latex.lang.LatexFoldingBuilder"
                 language="LaTeX"/>
+        <lang.formatter
+                implementationClass="mobi.hsz.idea.latex.formatter.LatexFormattingModelBuilder"
+                language="LaTeX"/>
         <lang.parserDefinition
                 implementationClass="mobi.hsz.idea.latex.lang.LatexParserDefinition"
                 language="LaTeX"/>
@@ -102,6 +102,8 @@
 
         <langCodeStyleSettingsProvider
                 implementation="mobi.hsz.idea.latex.codeStyle.LatexLanguageCodeStyleSettingsProvider"/>
+        <codeStyleSettingsProvider
+                implementation="mobi.hsz.idea.latex.codeStyle.LatexCodeStyleSettingsProvider"/>
 
         <psi.referenceContributor
                 implementation="mobi.hsz.idea.latex.reference.LatexReferenceContributor"

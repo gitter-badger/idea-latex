@@ -69,6 +69,9 @@ public class LatexParserDefinition implements ParserDefinition {
             LatexTypes.LPAREN, LatexTypes.RPAREN
     );
 
+    /** The set of element types which are treated as string literals. */
+    public static final TokenSet STRING_LITERALS = TokenSet.create(LatexTypes.TEXT);
+
     /** Element type of the node describing a file in the specified language. */
     public static final IFileElementType FILE = new IFileElementType(Language.findInstance(LatexLanguage.class));
 
@@ -174,7 +177,7 @@ public class LatexParserDefinition implements ParserDefinition {
     @NotNull
     @Override
     public TokenSet getStringLiteralElements() {
-        return TokenSet.EMPTY;
+        return STRING_LITERALS;
     }
 
     /**

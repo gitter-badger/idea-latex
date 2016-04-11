@@ -106,7 +106,7 @@ public class LatexFoldingBuilder implements FoldingBuilder {
      */
     @Override
     public boolean isCollapsedByDefault(@NotNull ASTNode node) {
-        return true;
+        return false;
     }
 
 }

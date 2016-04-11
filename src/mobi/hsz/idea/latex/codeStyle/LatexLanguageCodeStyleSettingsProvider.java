@@ -27,7 +27,6 @@ package mobi.hsz.idea.latex.codeStyle;
 import com.intellij.application.options.IndentOptionsEditor;
 import com.intellij.application.options.SmartIndentOptionsEditor;
 import com.intellij.lang.Language;
-import com.intellij.psi.codeStyle.CommonCodeStyleSettings;
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider;
 import mobi.hsz.idea.latex.lang.LatexLanguage;
 import mobi.hsz.idea.latex.util.Resources;
@@ -47,15 +46,15 @@ public class LatexLanguageCodeStyleSettingsProvider extends LanguageCodeStyleSet
         return LatexLanguage.INSTANCE;
     }
 
-    @Override
-    public CommonCodeStyleSettings getDefaultCommonSettings() {
-        CommonCodeStyleSettings defaultSettings = new CommonCodeStyleSettings(LatexLanguage.INSTANCE);
-        defaultSettings.initIndentOptions();
-//        defaultSettings.SPACE_WITHIN_BRACES = true;
-//        defaultSettings.KEEP_SIMPLE_CLASSES_IN_ONE_LINE = true;
-//        defaultSettings.KEEP_SIMPLE_METHODS_IN_ONE_LINE = true;
-        return defaultSettings;
-    }
+//    @Override
+//    public CommonCodeStyleSettings getDefaultCommonSettings() {
+//        CommonCodeStyleSettings defaultSettings = new CommonCodeStyleSettings(LatexLanguage.INSTANCE);
+//        defaultSettings.initIndentOptions();
+////        defaultSettings.SPACE_WITHIN_BRACES = true;
+////        defaultSettings.KEEP_SIMPLE_CLASSES_IN_ONE_LINE = true;
+////        defaultSettings.KEEP_SIMPLE_METHODS_IN_ONE_LINE = true;
+//        return defaultSettings;
+//    }
 
     @Override
     public String getCodeSample(@NotNull SettingsType settingsType) {
